@@ -39,7 +39,6 @@ opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 opt.undofile = true
 opt.timeoutlen = 500
 opt.updatetime = 100
-opt.clipboard = "unnamedplus"
 opt.fileencoding = "utf-8"
 
 -- Search
@@ -67,3 +66,25 @@ vim.g.lazyvim_winbar = false
 vim.api.nvim_set_hl(0, "WinBar1", { fg = "#8aadf4", bg = "NONE" }) -- counters / misc
 vim.api.nvim_set_hl(0, "WinBar2", { fg = "#c6a0f6", bg = "NONE" }) -- buffer count
 vim.api.nvim_set_hl(0, "WinBar3", { fg = "#a6da95", bg = "NONE" }) -- filename
+
+-- Use OSC52 clipboard only when running over SSH / in containers
+local function is_remote()
+  return vim.env.SSH_CONNECTION ~= nil or vim.env.SSH_TTY ~= nil or vim.env.DEVPOD ~= nil
+end
+
+if is_remote() then
+  vim.g.clipboard = {
+    name = "OSC52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+else
+  -- Local machine: use native clipboard
+  vim.opt.clipboard = "unnamedplus"
+end
