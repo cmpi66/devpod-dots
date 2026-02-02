@@ -5,11 +5,11 @@ export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CONFIG_HOME=$HOME/.config/
 export XDG_CACHE_HOME=$HOME/.cache/
 export XDG_DATA_HOME=$HOME/.local/share
-export XDG_DOWNLOAD_DIR=$HOME/dl
+# export XDG_DOWNLOAD_DIR=$HOME/dl
 # export ZDOTDIR=$HOME/.config/zsh    # this is in my systemwide zshenv and regular zshenv
 
-export PATH="$PATH:/$HOME/.local/appimages"
-export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
+# export PATH="$PATH:/$HOME/.local/appimages"
+# export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
 
 export TERM=xterm-256color
 export EDITOR='nvim'
@@ -21,7 +21,7 @@ export MANWIDTH=999
 
 
 # this is to fix treesitter cli breakage. old npm install
-export PATH="$HOME/.local/share/cargo/bin:$HOME/.local/.npm-global/bin:$PATH"
+# export PATH="$HOME/.local/share/cargo/bin:$HOME/.local/.npm-global/bin:$PATH"
 
 
 # ~/ Clean up:
