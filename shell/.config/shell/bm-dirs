@@ -1,0 +1,23 @@
+# You can add comments to these files with #
+cac ~/.cache
+cf  ~/.config
+D   ~/dl
+d   ~/docs
+rs  ~/.local/share
+# dt  $HOME/docs/tex/
+# ds  $HOME/docs/ms/
+dp  ~/docs/props/
+# dr  $HOME/docs/rmd/
+# dri $HOME/docs/rmd/it-projects/
+dm  ~/docs/md/
+rr  ~/.local/.src
+M   ~/media
+ce  ~/copywriting/english-rules/
+sw  ~/copywriting/swipes/
+swh ~/copywriting/swipes/headlines/
+h   ~/
+# m   ${XDG_MUSIC_DIR:-$HOME/media/music}
+mn  /mnt
+pp  ~/pix
+sc  ~/.local/bin
+vv  /mnt/truenas/vids/

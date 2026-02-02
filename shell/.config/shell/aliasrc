@@ -1,0 +1,84 @@
+#!/bin/bash
+alias j='z'
+alias f='zi'
+alias vf="fzf | xargs -r -I % $EDITOR %"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# easier to read disk
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
+# gpg encryption
+# verify signature for isos
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+# receive the key of a developer
+alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+
+# navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# these are from bashrc
+alias ll='ls -lav --ignore=..' # show long listing of all except ".."
+alias l='ls -lav --ignore=.?*' # show long listing but no hidden dotfiles except "."
+
+# alias sudo="doas"
+
+# unalias ls 2>/dev/null
+alias ls="eza -al --color=always --icons --group-directories-first"
+alias sl="eza -al --color=always --icons --group-directories-first"
+
+# alias snv="doas nvim"
+alias ka="killall"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -v"
+alias ln="ln -i"
+alias cl="clear"
+alias gp="git add . && git commit -m 'autopush' && git push"
+alias mkdir="mkdir -pv"
+# alias kx="killall sxhkd && sxhkd &"
+alias cat="bat -p"
+alias scim='sc-im --quiet'
+# alias m="mailsync"
+# alias se="du -a ~/.local/bin/* ~/.config/* | awk '{print $2}' | fzf | xargs -r nvim"
+
+alias ytd="yt-dlp --add-metadata -i"
+alias yta="yt-dlp -x -f bestaudio/best"
+alias combinepdf="gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=combine.pdf -dBATCH"
+alias en="gpg -c --no-symkey-cache --cipher-algo  AES256"
+# alias stow="stow --target=$HOME"
+# alias vpnup="sudo wg-quick up gentoobox"
+# alias vpndown "sudo wg-quick down gentoobox"
+# alias cmpiup "rsync -uvrP --delete-after ~/.local/src/sites/cmpi4/website/public/ root@cmpi4.com:/var/www/cmpi4/"
+alias tabs="xargs -n1 librewolf-bin <"
+
+alias mpv="mpv --fullscreen"
+# alias se="br --conf ~/.config/broot/open.hjson ~/.local/bin/"
+alias idrivemn="rclone mount IdriveEncrypt:/ /mnt/idrive/ --vfs-cache-mode full --daemon"
+alias p="wl-paste >"
+
+se() {
+  choice="$(find -L "$HOME/.local/bin" -type f | sed "s|$HOME/.local/bin/||" | fzf)"
+  [[ -n "$choice" ]] && $EDITOR "$(readlink -f "$HOME/.local/bin/$choice")"
+}
+checkapp() {
+  rg -i "$1" ~/media/sec-future/resume/sec-resume/per-role-resumes/app-tracker/jobapps-2025-new.csv
+}
+
+pw() {
+  pwgen -sync "${1:-48}" -1 | wl-copy
+}
