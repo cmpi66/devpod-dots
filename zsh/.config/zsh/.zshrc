@@ -24,7 +24,7 @@ HISTFILE="$XDG_STATE_HOME"/zsh/history
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functionrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functionrc"
 
 source "$HOME/.config/zsh/plugins/catppuccin_macchiato-zsh-syntax-highlighting.zsh"
-source "$HOME/.config/zsh/plugins/fzf-git.sh"
+# source "$HOME/.config/zsh/plugins/fzf-git.sh"
 
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
@@ -46,8 +46,8 @@ bindkey -M vicmd 'Y'  fish_clipboard_copy
 bindkey -M vicmd 'p'  fish_clipboard_paste
 
 
-zle -N fzf-git-files-widget
-bindkey '^S' fzf-git-files-widget
+# zle -N fzf-git-files-widget
+# bindkey '^S' fzf-git-files-widget
 
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
