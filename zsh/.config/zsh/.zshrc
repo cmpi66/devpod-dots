@@ -67,11 +67,11 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#494D64 \
 --color=border:#6E738D,label:#CAD3F5"
 
+eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"   
 # eval "$(fnm env --use-on-cd --shell zsh)"
 # eval "$(atuin init zsh)"
-eval "$(mise activate zsh)"
+eval "$(starship init zsh)"   
 
 # Load and initialise completion system
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
