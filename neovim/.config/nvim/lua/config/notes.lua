@@ -233,23 +233,6 @@ function M.open_link_under_cursor()
       return
     end
 
-    -- Delegate non-.md targets (e.g., images) to zimg viewer; else open file
-    if not url:match("%.md$") then
-      local ok, zimg = pcall(require, "config.zimg")
-      if ok then
-        local abs = url:match("^/") and url or path_join(vim.fn.expand("%:p:h"), url)
-        zimg.open_file(abs)
-      else
-        local abs = path_join(vim.fn.expand("%:p:h"), url)
-        if vim.fn.filereadable(abs) == 1 then
-          vim.cmd("edit " .. abs)
-        else
-          vim.notify("File not found: " .. rel_to_root(abs), vim.log.levels.WARN)
-        end
-      end
-      return
-    end
-
     -- .md targets: try relative, then search by stem under ROOT
     local base = vim.fn.expand("%:p:h")
     local abs = url:match("^/") and url or path_join(base, url)
