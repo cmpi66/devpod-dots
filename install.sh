@@ -14,6 +14,7 @@ PKGS=(
   shell
   starship
   zsh
+  autin-config
 )
 
 for pkg in "${PKGS[@]}"; do
