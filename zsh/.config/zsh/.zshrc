@@ -70,8 +70,9 @@ export FZF_DEFAULT_OPTS=" \
 eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 # eval "$(fnm env --use-on-cd --shell zsh)"
-# eval "$(atuin init zsh)"
-eval "$(starship init zsh)"   
+eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
+eval "$(uv generate-shell-completion zsh)"
 
 # Load and initialise completion system
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
