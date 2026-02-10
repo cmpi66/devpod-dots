@@ -1,142 +1,67 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$all"""
+# Sets user-defined palette
+# Palettes must be defined _after_ this line
+palette = "catppuccin_macchiato"
 
-# move the rest of the prompt to the right
-# right_format = """${custom.pending} ${custom.urgent} ${custom.low} $time"""
-# right_format = """${custom.due} $time"""
-# right_format = "${custom.urgent} ${custom.overdue} ${custom.duetoday} ${custom.duetomorrow} $time $battery"
-# right_format = "$time battery"
+# Starship modules
+[character]
 
-# Wait 10 milliseconds for starship to check files under the current directory.
-scan_timeout = 10
-
-# Wait 700 milliseconds for starship command  to check run this way the task command won't time out
-# command_timeout = 1000
-
-# [custom.pending]
-# command = "task count rc.gc=off rc.verbose=nothing status:pending"
-# # command = "task count rc.gc=off rc.verbose=nothing status:pending && task count rc.gc=off rc.verbose=nothing priority:H"
-# when = "which task"
-# symbol = " "
-# format = "[$symbol$output]($style)"
-# description = "Count of pending Taskwarrior tasks"
-
-# [custom.urgent]
-# command = "taskurgent"
-# when = "which task"
-# symbol = " "
-# style = "bold red"
-# format = "[$symbol$output]($style)"
-# description = "Count of uegent > 10 Taskwarrior tasks"
-#
-# [custom.overdue]
-# command = "taskoverdue"
-# when = "which task"
-# symbol = "☠️  "
-# format = "[$symbol$output]($style)"
-# description = "Count of overdue Taskwarrior tasks"
-#
-# [custom.duetomorrow]
-# command = "taskduetomorrow"
-# when = "which task"
-# symbol = "📅 "
-# format = "[$symbol$output]($style)"
-# description = "Count of due tomorrow Taskwarrior tasks"
-#
-# [custom.duetoday]
-# command = "taskduetoday"
-# when = "which task"
-# symbol = "🎯 "
-# format = "[$symbol$output]($style)"
-# description = "Count of duetoday Taskwarrior tasks"
-
-# [custom.due]
-# command = "task count rc.gc=off rc.verbose=nothing due:monday status:pending"
-# when = "which task"
-# symbol = " "
-# style = "bold red"
-# format = "[$symbol$output]($style)"
-# description = "Count of pending Taskwarrior tasks"
-
-# [custom.urgent]
-# command = "task count rc.gc=off rc.verbose=nothing priority:H status:pending"
-# when = "which task"
-# symbol = " "
-# style = "bold red"
-# format = "[$symbol$output]($style)"
-# description = "Count of pending Taskwarrior tasks"
-
-# [custom.low]
-# command = "task count rc.gc=off rc.verbose=nothing priority:L status:pending"
-# when = "which task"
-# symbol = "Q "
-# style = "bold purple"
-# format = "[$symbol$output]($style)"
-# description = "Count of pending Taskwarrior tasks"
+success_symbol = "[❯](bold green) "
+error_symbol = "[](bold red) "
+vicmd_symbol = '[N](bold sapphire) '
+vimcmd_replace_one_symbol = '[❮](bold yellow)'
+vimcmd_replace_symbol = '[❮](bold red)'
+vimcmd_visual_symbol = '[V](bold mauve)'
 
 [line_break]
 disabled = false
-
 
 #Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
 
 
-# [git_status]
-# conflicted = "🏳"
-# ahead = "🏎💨"
-# behind = "😰"
-# diverged = "😵"
-# up_to_date = "✓"
-# untracked = "🤷"
-# stashed = "📦"
-# modified = "📝"
-# staged = '[++\($count\)](green)'
-# renamed = "👅"
-# deleted = "🗑"
-
-
-[character]
-success_symbol = "[❯](bold green) "
-error_symbol = '[✗](bold red) '
-vicmd_symbol = '[N](bold cyan) '
-vimcmd_replace_one_symbol = '[❮](bold yellow)'
-vimcmd_replace_symbol = '[❮](bold red)'
-vimcmd_visual_symbol = '[V](bold purple)'
-
-
-# [hostname]
-# ssh_only = false
-# format = "[$hostname]($style) "
-# trim_at = "-"
-# style = "bold blue"
-# disabled = false
-
-[python]
-symbol = " "
-style = "bold #e5c07b" #yellow
-
-[nodejs]
-symbol = " "
-style = "bold #e5c07b" #yellow
-
 [golang]
 symbol = " "
 
 [directory]
 truncate_to_repo = false
-style = "bold cyan"
+style = "bold sapphire"
 read_only = " "
 
 [git_branch]
+style = "bold mauve"
 format = "[$symbol$branch]($style) "
 symbol = " "
 
-# [time]
-# disabled = false
-# style = "bold purple"
-# format = '[\[$time\]]($style) '
-# time_format = "%r"
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
+
+
