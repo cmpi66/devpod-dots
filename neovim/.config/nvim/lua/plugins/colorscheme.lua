@@ -5,6 +5,11 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
+      transparent_background = true,
+      float = {
+        transparent = true,
+        -- solid = true,
+      },
       flavour = "macchiato", -- change to latte, frappe, macchiato if desired
       lsp_styles = {
         underlines = {

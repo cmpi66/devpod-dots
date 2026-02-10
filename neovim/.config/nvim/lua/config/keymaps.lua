@@ -23,8 +23,8 @@ vim.keymap.set("n", "<leader>zl", function()
 end, { desc = "Notes: New Literature note" })
 
 -- ── Linking / search (Snacks) ──────────────────────────────────────────────────
-vim.keymap.set("n", "<leader>zb", notes.search_backlinks, { desc = "Notes: Backlinks to current" })
-vim.keymap.set("v", "<leader>zg", notes.search_visual, { desc = "Notes: Grep visual selection" })
+-- vim.keymap.set("n", "<leader>zb", notes.search_backlinks, { desc = "Notes: Backlinks to current" })
+-- vim.keymap.set("v", "<leader>zg", notes.search_visual, { desc = "Notes: Grep visual selection" })
 vim.keymap.set("n", "<leader>zi", notes.insert_link, { desc = "Notes: Insert [[wikilink]]" })
 
 -- Browse all notes (files picker rooted at ZK root)

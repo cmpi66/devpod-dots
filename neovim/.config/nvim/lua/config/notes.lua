@@ -167,32 +167,39 @@ function M.new_note(dir)
   vim.notify("Created: " .. rel_to_root(path), vim.log.levels.INFO)
 end
 
-function M.search_backlinks()
-  local stem = vim.fn.expand("%:t:r")
-  local query = "%[%[" .. stem:gsub("(%W)", "%%%1") .. "%]%]"
-  require("snacks").picker("grep", {
-    default_text = query,
-    cwd = ROOT,
-  })
-end
-
-function M.search_visual()
-  local selected = vim.fn.getreg("v")
-  require("snacks").picker("grep", { default_text = selected, cwd = ROOT })
-end
+-- function M.search_backlinks()
+--   local stem = vim.fn.expand("%:t:r")
+--   local query = "%[%[" .. stem:gsub("(%W)", "%%%1") .. "%]%]"
+--   require("snacks").picker("grep", {
+--     default_text = query,
+--     cwd = ROOT,
+--   })
+-- end
 
 function M.insert_link()
   require("snacks").picker("files", {
     cwd = ROOT,
-    attach_mappings = function(_, map)
-      map("i", "<CR>", function(prompt_bufnr)
-        local entry = require("snacks").get_selected_entry(prompt_bufnr)
-        local name = vim.fn.fnamemodify(entry.value, ":t:r")
-        vim.api.nvim_put({ string.format("[[%s]]", name) }, "", true, true)
-        require("snacks.actions").close(prompt_bufnr)
-      end)
-      return true
-    end,
+
+    actions = {
+      confirm = function(picker, item)
+        picker:close()
+
+        -- 🔒 derive stem safely from full path
+        local filename = item.file:match("([^/]+)$") or ""
+        local stem = filename:match("(.+)%.md$") or filename
+        local link = string.format("[[%s]]", stem)
+
+        -- insert at cursor
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        row = row - 1
+
+        local line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1] or ""
+        local new_line = line:sub(1, col) .. link .. line:sub(col + 1)
+
+        vim.api.nvim_buf_set_lines(0, row, row + 1, false, { new_line })
+        vim.api.nvim_win_set_cursor(0, { row + 1, col + #link })
+      end,
+    },
   })
 end
 
